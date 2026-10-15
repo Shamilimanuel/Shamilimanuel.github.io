@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waypoint</title>
+<meta name="description" content="Waypoint is a personal file manager for Windows with a game-style look. Its Mail tab reads Gmail, read-only, on the user's own PC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>
+  :root { --night: #171C29; --night-2: #212839; --line: rgba(211,188,142,.24); --cream: #ECE5D8; --dim: #A9ACB8; --gold: #D3BC8E; --gold-hi: #F3D79C;
+    --display: "Cinzel", Georgia, serif; --ui: "Zen Maru Gothic", "Segoe UI", system-ui, sans-serif; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(120% 60% at 50% -10%, #2C3653 0%, var(--night) 60%) fixed, var(--night); color: var(--cream); font: 500 16px/1.6 var(--ui); }
+  main { max-width: 720px; margin: 0 auto; padding: 56px 20px 72px; display: grid; gap: 22px; }
+  .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  h1 { margin: 4px 0 0; font: 700 clamp(36px, 8vw, 56px)/1.05 var(--display); letter-spacing: .05em; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h2 { margin: 0 0 6px; font: 700 20px var(--display); color: var(--gold-hi); }
+  p { margin: 0; color: var(--dim); } p b { color: var(--cream); }
+  section { background: var(--night-2); border: 1px solid var(--line); border-radius: 6px 22px 6px 6px; padding: 18px 20px; }
+  ul { margin: 6px 0 0; padding-left: 20px; color: var(--dim); } li { margin: 3px 0; } li b { color: var(--cream); }
+  a { color: var(--gold-hi); }
+  footer { color: var(--dim); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <div class="eyebrow">A personal file manager for Windows</div>
+    <h1>Waypoint</h1>
+  </div>
+  <p><b>Waypoint</b> is a file manager for Windows with a game-style look: folders become places you travel to, files get a
+  rarity, and tidying up earns experience. It runs as a desktop app on the user’s own PC. It is a personal project, made for
+  its author’s own use, and it is not sold or offered as a service.</p>
+
+  <section>
+    <h2>The Mail tab</h2>
+    <p>Waypoint can show the user’s own Gmail inside the app. It signs in through Google’s own sign-in page and asks only for
+    <b>read-only</b> access (“View your email messages and settings”). It cannot send, delete or change mail.</p>
+    <ul>
+      <li><b>Everything stays on the user’s PC.</b> Mail is fetched straight from Google to the app and shown there. There is no Waypoint server.</li>
+      <li><b>The sign-in key</b> is kept in Windows Credential Manager on that PC, never in a cloud folder.</li>
+      <li><b>Pictures from the internet</b> inside mail stay blocked until the user chooses to show them.</li>
+    </ul>
+  </section>
+
+  <p>How Waypoint handles Google user data: <a href="privacy.html">Privacy policy</a>.</p>
+  <footer>Waypoint · made by Shamilimanuel · <a href="https://github.com/Shamilimanuel">github.com/Shamilimanuel</a></footer>
+</main>
+</body>
+</html>
