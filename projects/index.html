@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shamil's projects</title>
+<meta name="description" content="Windows apps, desktop widgets, an Android launcher and study sites made by Shamil, a student in the Netherlands. Every project links to its GitHub page.">
+<meta name="theme-color" content="#171C29">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>
+  :root {
+    --night: #171C29; --night-2: #212839; --night-3: #2B3450;
+    --line: rgba(211,188,142,.24); --line-hi: rgba(243,215,156,.55);
+    --cream: #ECE5D8; --card: #F4EEE2; --ink: #2A2F44; --ink-dim: #5B6074; --dim: #A9ACB8;
+    --gold: #D3BC8E; --gold-hi: #F3D79C;
+    --pyro: #FF8A5C; --hydro: #5CC4F5; --anemo: #5FD3AE; --electro: #B18BEC; --dendro: #A8D04A; --cryo: #9FE0F0; --geo: #F2C463;
+    --display: "Cinzel", Georgia, serif; --ui: "Zen Maru Gothic", "Segoe UI", system-ui, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: radial-gradient(120% 55% at 50% -8%, #2C3653 0%, var(--night) 62%) fixed, var(--night);
+    color: var(--cream); font: 500 16px/1.6 var(--ui); -webkit-text-size-adjust: 100%; }
+  a { color: var(--gold-hi); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* top */
+  header { padding: 56px 0 8px; text-align: center; }
+  .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  h1 { margin: 6px 0 10px; font: 700 clamp(34px, 9vw, 60px)/1.05 var(--display); letter-spacing: .05em;
+    background: linear-gradient(180deg, var(--gold-hi), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lede { max-width: 640px; margin: 0 auto; color: var(--dim); }
+  .lede b { color: var(--cream); font-weight: 700; }
+  .top-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 18px; border-radius: 999px;
+    border: 1px solid var(--line-hi); color: var(--gold-hi); text-decoration: none; font-weight: 700; font-size: 15px;
+    background: rgba(33,40,57,.7); transition: transform .15s, background .4s, box-shadow .4s; }
+  .btn:hover { background: var(--night-3); box-shadow: 0 0 18px rgba(243,215,156,.25); }
+  .btn:active { transform: scale(.96); }
+  .btn.solid { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--ink); border-color: transparent; }
+  .btn.solid:hover { background: linear-gradient(180deg, #FFE7B4, var(--gold-hi)); }
+  .btn:focus-visible, .chip:focus-visible, .card a:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+  /* filter */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0 4px; }
+  .chip { font: 700 14px var(--ui); min-height: 44px; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--cream); border: 1px solid var(--line); transition: background .4s, color .4s, border-color .4s, transform .15s; }
+  .chip:hover { border-color: var(--line-hi); background: rgba(43,52,80,.6); }
+  .chip:active { transform: scale(.95); }
+  .chip[aria-pressed="true"] { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--ink); border-color: transparent; }
+  .chip small { font-weight: 500; opacity: .75; margin-left: 4px; }
+
+  /* groups */
+  .group { margin-top: 44px; scroll-margin-top: 16px; }
+  .group[hidden] { display: none; }
+  .group-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .group-head h2 { margin: 0; font: 700 clamp(20px, 5vw, 26px) var(--display); color: var(--gold-hi); letter-spacing: .04em; }
+  .group-head p { margin: 0; color: var(--dim); font-size: 14px; }
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+
+  /* cards: cream card, art window on top, element bar */
+  .card { --el: var(--gold); display: flex; flex-direction: column; background: var(--card); color: var(--ink); border-radius: 6px 22px 6px 6px;
+    overflow: hidden; border: 1px solid rgba(255,255,255,.5); box-shadow: 0 10px 28px rgba(0,0,0,.35);
+    transition: transform .3s, box-shadow .3s; position: relative; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.45), 0 0 0 1px var(--el); }
+  .art { position: relative; aspect-ratio: 16 / 10; background: var(--night); overflow: hidden; border-bottom: 3px solid var(--el); }
+  .art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .art.glyph { display: grid; place-items: center;
+    background: radial-gradient(90% 90% at 30% 20%, color-mix(in srgb, var(--el) 55%, #171C29) 0%, #171C29 75%); }
+  .art.glyph::before { content: ""; position: absolute; width: 62%; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--el) 60%, transparent);
+    transform: rotate(45deg); box-shadow: 0 0 0 14px rgba(255,255,255,.03), inset 0 0 40px color-mix(in srgb, var(--el) 30%, transparent); }
+  .art.glyph span { position: relative; font: 700 64px var(--display); color: var(--gold-hi); text-shadow: 0 0 24px color-mix(in srgb, var(--el) 80%, transparent); }
+  .tag { position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; background: rgba(23,28,41,.85); color: var(--gold-hi); border: 1px solid var(--line); }
+  .body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; }
+  .name { display: flex; align-items: center; gap: 8px; margin: 0; font: 700 20px/1.2 var(--display); letter-spacing: .02em; color: var(--ink); }
+  .dot { flex: none; width: 11px; height: 11px; border-radius: 50%; background: var(--el); box-shadow: 0 0 0 3px color-mix(in srgb, var(--el) 28%, transparent); }
+  .kind { margin: 2px 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim); }
+  .one { margin: 0 0 14px; color: var(--ink); font-size: 15px; flex: 1; }
+  .go { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 9px 16px; border-radius: 999px;
+    background: var(--ink); color: var(--gold-hi); text-decoration: none; font-weight: 700; font-size: 14px; transition: background .4s, transform .15s, box-shadow .4s; }
+  .go:hover { background: #3A4163; box-shadow: 0 0 16px color-mix(in srgb, var(--el) 60%, transparent); }
+  .go:active { transform: scale(.95); }
+  .go svg { width: 16px; height: 16px; fill: currentColor; }
+  .card.hide { display: none; }
+
+  .note { margin: 36px auto 0; max-width: 700px; text-align: center; color: var(--dim); font-size: 14px; }
+  footer { margin-top: 44px; padding: 26px 0 48px; border-top: 1px solid var(--line); text-align: center; color: var(--dim); font-size: 13px; }
+  footer p { margin: 4px 0; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    header { padding-top: 40px; }
+    .btn { padding: 9px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Portfolio</div>
+    <h1>Shamil</h1>
+    <p class="lede">I'm a student in the Netherlands. I build <b>Windows apps</b>, small <b>desktop widgets</b>, <b>study sites</b> and an <b>Android launcher</b>, mostly in a night-and-gold look inspired by Genshin Impact. Every card links to its code on GitHub.</p>
+    <div class="top-links">
+      <a class="btn solid" href="https://github.com/Shamilimanuel">My GitHub profile</a>
+      <a class="btn" href="#apps">Jump to the apps</a>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="Show projects by kind" id="filters">
+    <button class="chip" type="button" data-f="all" aria-pressed="true">All<small>17</small></button>
+    <button class="chip" type="button" data-f="apps" aria-pressed="false">Apps<small>6</small></button>
+    <button class="chip" type="button" data-f="widgets" aria-pressed="false">Widgets<small>5</small></button>
+    <button class="chip" type="button" data-f="android" aria-pressed="false">Android<small>1</small></button>
+    <button class="chip" type="button" data-f="web" aria-pressed="false">Web &amp; study<small>5</small></button>
+  </nav>
+
+  <main>
+    <section class="group" id="apps" data-g="apps">
+      <div class="group-head"><h2>Apps</h2><p>Windows programs, plus a phone remote for your PC</p></div>
+      <div class="grid">
+        <article class="card" style="--el:var(--geo)">
+          <div class="art"><img src="shots/waypoint.webp" width="800" height="500" loading="lazy" alt="Waypoint home screen: two drives as level cards, waypoints for common folders and a list of recent example files, over a sunset sky"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Waypoint</h3><div class="kind">Windows file manager</div>
+            <p class="one">A file manager where drives are levels, folders are waypoints and the Recycle Bin is called Salvage. Has a disk map and live backgrounds.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Waypoint">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--electro)">
+          <div class="art"><img src="shots/leyline.webp" width="800" height="500" loading="lazy" alt="Leyline task manager: a boss-fight banner, four heavy programs shown as party cards and a table of example processes"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Leyline</h3><div class="kind">Windows task manager</div>
+            <p class="one">Your programs show up as a party, and the heavy ones get a "boss fight" banner. Also a game overlay and a disk map.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Leyline">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--geo)">
+          <div class="art"><img src="shots/toolbelt.webp" width="800" height="500" loading="lazy" alt="Toolbelt game library with a large space-themed example game and a row of invented game covers"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Toolbelt</h3><div class="kind">Windows tool app</div>
+            <p class="one">One app for the everyday jobs I would otherwise need a dozen websites for. Everything runs on your own PC.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Toolbelt">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--hydro)">
+          <div class="art"><img src="shots/housecall.webp" width="800" height="500" loading="lazy" alt="Housecall in PowerShell: a lettered menu of computer problems such as Internet and Wi-Fi, Sound, Printer and Slow or freezing"><span class="tag">Mock-up</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Housecall</h3><div class="kind">PC repair helper</div>
+            <p class="one">Finds and fixes computer problems. It only looks until you say yes, and nothing is installed.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Housecall">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--anemo)">
+          <div class="art"><img src="shots/courier.webp" width="800" height="500" loading="lazy" alt="Courier window with paired devices, a drop area for files, a text box and a list of recently sent example files"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Courier</h3><div class="kind">PC, desktop and Android</div>
+            <p class="one">Send text, clipboard and files between your own devices over your own Wi-Fi: no cloud, no account.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Courier">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--pyro)">
+          <div class="art"><img src="shots/reveille.webp" width="800" height="500" loading="lazy" alt="Reveille phone app with Wake, Restart, Sleep, Lock and Shut down buttons and a progress ring while the PC wakes up"><span class="tag">Mock-up</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Reveille</h3><div class="kind">Phone remote for your PC</div>
+            <p class="one">Start, shut down, restart, sleep and lock your computer from your phone, over home Wi-Fi. (The repo is called PCRemote.)</p>
+            <a class="go" href="https://github.com/Shamilimanuel/PCRemote">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="group" id="widgets" data-g="widgets">
+      <div class="group-head"><h2>Widgets</h2><p>Small helpers that sit on top of Windows</p></div>
+      <div class="grid">
+        <article class="card" style="--el:var(--electro)">
+          <div class="art"><img src="shots/terminal.webp" width="800" height="500" loading="lazy" alt="Terminal's artwork: the blue rune-circle emblem as dots, as letters and as a picture, and the amber Administrator sigil"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Terminal</h3><div class="kind">Windows Terminal theme</div>
+            <p class="one">A custom look for Windows Terminal and PowerShell: a see-through rune theme, a welcome screen with an emblem, live PC status and short commands.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Terminal">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--dendro)">
+          <div class="art"><img src="shots/clipboard.webp" width="800" height="500" loading="lazy" alt="Clipboard history window listing eight example clips such as a link, a colour code and an image"><span class="tag">Mock-up</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Clipboard</h3><div class="kind">Clipboard history</div>
+            <p class="one">Copy as usual, press a hotkey, and pick any earlier clip from a soft, themed list.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Clipboard">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--hydro)">
+          <div class="art"><img src="shots/snipper.webp" width="800" height="500" loading="lazy" alt="Snipper capture bar over a dimmed desktop while a rectangle is dragged around an example chart"><span class="tag">Mock-up</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Snipper</h3><div class="kind">Snipping tool</div>
+            <p class="one">Drag a box on the screen, mark it up, or copy the words straight out of the picture.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Snipper">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--cryo)">
+          <div class="art"><img src="shots/custom-clock.webp" width="800" height="500" loading="lazy" alt="The two-line taskbar clock zoomed in: date and time on top, CPU, GPU and RAM below, then game resin"><span class="tag">Mock-up</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Custom Clock</h3><div class="kind">Windows 11 taskbar</div>
+            <p class="one">A two-line clock: date and time on top, and below it CPU, GPU, RAM or what is playing.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Custom-Clock">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--pyro)">
+          <div class="art"><img src="shots/crosshairs.webp" width="800" height="500" loading="lazy" alt="Crosshairs settings window, Design tab: a list of games, shape and colour choices, and a live preview over grass"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Crosshairs</h3><div class="kind">Game overlay</div>
+            <p class="one">A see-through, click-through crosshair for your games, with a separate save for each game.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Crosshairs">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="group" id="android" data-g="android">
+      <div class="group-head"><h2>Android</h2><p>Reveille and Courier have phone apps too</p></div>
+      <div class="grid">
+        <article class="card" style="--el:var(--anemo)">
+          <div class="art"><img src="shots/launcher.webp" width="800" height="500" loading="lazy" alt="Three phone screens of the launcher prototype with sunset, night and storm live backgrounds, an app list and a letter rail"><span class="tag">Prototype</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Launcher (Seelie)</h3><div class="kind">Android home screen</div>
+            <p class="one">A home-screen launcher with live wallpapers, an A-Z app list, a night screen and a PIN vault. Written in Kotlin.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Launcher">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="group" id="web" data-g="web">
+      <div class="group-head"><h2>Web &amp; study</h2><p>Browser pages, a study site and add-ons for VS Code</p></div>
+      <div class="grid">
+        <article class="card" style="--el:var(--dendro)">
+          <div class="art"><img src="shots/leeromgeving.webp" width="800" height="500" loading="lazy" alt="Leeromgeving home screen in Dutch: a daily to-do list, a level bar and a glowing evening sky"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Leeromgeving</h3><div class="kind">Study site, in Dutch</div>
+            <p class="one">A study site for Dutch VMBO students: summaries, flashcards with spaced repetition and a practice game.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Leeromgeving-">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--cryo)">
+          <div class="art"><img src="shots/akasha-terminal.webp" width="800" height="500" loading="lazy" alt="Akasha Terminal Today screen with a daily routine checklist, a banner countdown and a patch status list, on made-up data"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Akasha Terminal</h3><div class="kind">Genshin dashboard</div>
+            <p class="one">A night-and-gold dashboard for a Genshin account: daily routine, wish counter, roster and an artifact lab.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Akasha-Terminal">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--hydro)">
+          <div class="art"><img src="shots/vpn-prototype.webp" width="800" height="500" loading="lazy" alt="Windveil prototype on desktop: a Protected status ring, the route, live speed graph and switches for kill switch and ad shield"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>VPN prototype</h3><div class="kind">Design prototype</div>
+            <p class="one">Windveil, a clickable design for a privacy VPN app, plus a page of ideas. A prototype only: it is not a working VPN.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/VPN-prototype">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--geo)">
+          <div class="art"><img src="shots/irminsul.webp" width="800" height="500" loading="lazy" alt="A VS Code window mock-up using the Irminsul Night theme, showing Python code with made-up content"></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Irminsul</h3><div class="kind">VS Code theme</div>
+            <p class="one">A night-blue, cream and gold theme with the seven elements as the colours of your code.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/Irminsul">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+        <article class="card" style="--el:var(--anemo)">
+          <div class="art glyph" role="img" aria-label="Genshin Quick View, drawn as a gold diamond emblem"><span>G</span></div>
+          <div class="body"><h3 class="name"><span class="dot"></span>Genshin Quick View</h3><div class="kind">VS Code add-on</div>
+            <p class="one">One click in the status bar opens the Genshin interactive map or wiki, without leaving your editor.</p>
+            <a class="go" href="https://github.com/Shamilimanuel/genshin-quick-view">View on GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.88 2.34.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.96 0-.88.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
+        </article>
+      </div>
+    </section>
+
+    <p class="note">All pictures use made-up example data. Cards marked <b>Mock-up</b> show an HTML recreation of the app, not a live capture. Cards marked <b>Prototype</b> show a design mock-up with made-up apps, not the finished Android app. Genshin Quick View has no picture yet, so it shows a gold diamond.</p>
+  </main>
+
+  <footer>
+    <p>The Genshin-style projects are unofficial, fan-made and not affiliated with or endorsed by HoYoverse.</p>
+    <p><a href="https://github.com/Shamilimanuel">github.com/Shamilimanuel</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('#filters .chip');
+  var groups = document.querySelectorAll('.group');
+  function show(f) {
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.f === f ? 'true' : 'false'); });
+    groups.forEach(function (g) { g.hidden = !(f === 'all' || g.dataset.g === f); });
+  }
+  chips.forEach(function (c) { c.addEventListener('click', function () { show(c.dataset.f); }); });
+  var h = (location.hash || '').slice(1);
+  if (h && document.querySelector('.chip[data-f="' + h + '"]')) show(h);
+})();
+</script>
+</body>
+</html>
