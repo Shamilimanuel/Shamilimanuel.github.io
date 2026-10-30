@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Waypoint Privacy Policy</title>
-<meta name="description" content="How Waypoint, a personal Windows file manager, handles Google user data: read-only Gmail access, kept on the user's own PC.">
+<meta name="description" content="How Waypoint, a personal Windows file manager, handles Google user data: Gmail access used only on the user's own actions, kept on the user's own PC.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
@@ -28,19 +28,26 @@
   <div>
     <div class="eyebrow"><a href="./">Waypoint</a></div>
     <h1>Privacy policy</h1>
-    <p class="when">Last updated 15 October 2026</p>
+    <p class="when">Last updated 30 October 2026</p>
   </div>
 
   <p><b>Waypoint</b> is a personal file manager for Windows, made for its author’s own use. This page explains what
   Waypoint does with Google user data when its Mail tab is connected to a Gmail account.</p>
 
   <h2>What Waypoint asks for</h2>
-  <p>Only <b>read-only access to Gmail</b> (the Google scope <code>https://www.googleapis.com/auth/gmail.readonly</code>,
-  shown by Google as “View your email messages and settings”). Waypoint cannot send, delete, label or change mail.</p>
+  <p>Two Gmail permissions (Google calls them scopes), plus the user’s name, email address and picture so the app can show who is signed in:</p>
+  <ul>
+    <li><code>https://www.googleapis.com/auth/gmail.modify</code>: read mail, add or remove labels, archive, move mail to Gmail’s Bin (and back), keep drafts, and send mail. It does <b>not</b> allow permanently deleting mail, and Waypoint never does that.</li>
+    <li><code>https://www.googleapis.com/auth/gmail.settings.basic</code>: create and remove Gmail filters. Waypoint uses this only for its Mute and Block buttons and its auto-rules.</li>
+  </ul>
+  <p>Waypoint uses these permissions only when the user asks for something in the app (for example pressing Send, Archive,
+  Mute or Block). It never sends, moves or changes mail on its own. Accounts connected before 15 October 2026 stay read-only
+  (<code>gmail.readonly</code>) until the user signs in once more and allows the new permission.</p>
 
   <h2>What it does with it</h2>
   <ul>
     <li>It shows the user’s own mail, labels and attachments inside the Waypoint app on the user’s own PC.</li>
+    <li>It changes the user’s mail only on the user’s explicit action: labelling, archiving, moving to the Bin, saving a draft, sending, or creating or removing a filter. A mail set to “send later” is held by the app on the user’s PC until its time.</li>
     <li>Attachments are saved or opened only when the user asks, on that same PC.</li>
     <li>It does <b>not</b> use the data for advertising, profiling, selling or training any model, and it does not combine it with other data.</li>
   </ul>
@@ -49,7 +56,7 @@
   <ul>
     <li><b>Nowhere but the user’s PC.</b> Mail travels directly between Google’s servers and the app. Waypoint has no server and no analytics.</li>
     <li><b>Nobody else sees it.</b> No data is shared with, sent to or sold to anyone.</li>
-    <li>The sign-in key (a refresh token) is stored in <b>Windows Credential Manager</b> on that PC. Mail is not stored permanently; temporary copies of opened attachments stay in the PC’s temporary folder.</li>
+    <li>The sign-in key (a refresh token) is stored in <b>Windows Credential Manager</b> on that PC. Mail is not stored permanently; temporary copies of opened attachments stay in the PC’s temporary folder, and a “send later” mail waits in the app’s data folder on that PC until it is sent.</li>
     <li>To show sender logos, the app may load a small icon from the sender’s own website; no mail content is sent with that request.</li>
   </ul>
 

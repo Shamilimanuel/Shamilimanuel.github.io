@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="AaaeGcbkJ5s4DUG_Q0Uii4l0dkN-0xcaNKJQzrrLZfY" />
 <title>Waypoint</title>
-<meta name="description" content="Waypoint is a personal file manager for Windows with a game-style look. Its Mail tab reads Gmail, read-only, on the user's own PC.">
+<meta name="description" content="Waypoint is a personal file manager for Windows with a game-style look. Its Mail tab works with the user's own Gmail, on the user's own PC.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
@@ -37,11 +37,14 @@
 
   <section>
     <h2>The Mail tab</h2>
-    <p>Waypoint can show the user’s own Gmail inside the app. It signs in through Google’s own sign-in page and asks only for
-    <b>read-only</b> access (“View your email messages and settings”). It cannot send, delete or change mail.</p>
+    <p>Waypoint can show and tidy the user’s own Gmail inside the app. It signs in through Google’s own sign-in page and asks for
+    two permissions (Google calls them scopes): <code>gmail.modify</code> (read, label, archive, move to Gmail’s Bin, keep drafts
+    and send mail) and <code>gmail.settings.basic</code> (Gmail filters, used for Mute and Block). It never permanently deletes mail.
+    It only does these things when the user asks for them, for example by pressing Send, Archive or Mute.</p>
     <ul>
       <li><b>Everything stays on the user’s PC.</b> Mail is fetched straight from Google to the app and shown there. There is no Waypoint server.</li>
       <li><b>The sign-in key</b> is kept in Windows Credential Manager on that PC, never in a cloud folder.</li>
+      <li><b>Access can be removed at any time</b>: Mail → Accounts → Sign out in Waypoint, or myaccount.google.com/connections (details in the privacy policy below).</li>
       <li><b>Pictures from the internet</b> inside mail stay blocked until the user chooses to show them.</li>
     </ul>
   </section>
